@@ -42,16 +42,19 @@ class MyHomePage extends StatelessWidget {
     var pair = appState.current;
 
     return Scaffold(
-      body: Column(
-        children: [
-          Text('Testando o Flutter 2:'),
-          BigCard(pair: pair),
-          ElevatedButton(
-            onPressed: () {
-            appState.getNext();
-          }, child: Text('Botão teste'),
-          )
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Testando o Flutter 2:'),
+            BigCard(pair: pair),
+            ElevatedButton(
+              onPressed: () {
+              appState.getNext();
+            }, child: Text('Botão teste'),
+            )
+          ],
+        ),
       ),
     );
   }
