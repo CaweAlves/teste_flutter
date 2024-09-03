@@ -46,13 +46,14 @@ class MyHomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Testando o Flutter 2:'),
             BigCard(pair: pair),
+            SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
-              appState.getNext();
-            }, child: Text('Botão teste'),
-            )
+                appState.getNext();
+              },
+              child: Text('Próximo'),
+            ),
           ],
         ),
       ),
