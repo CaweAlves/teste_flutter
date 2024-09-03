@@ -33,6 +33,16 @@ class MyAppState extends ChangeNotifier {
     notifyListeners();
   }
 
+  var favorites = <WordPair>[];
+
+  void toggleFavorite() {
+    if (favorites.contains(current)) {
+      favorites.remove(current);
+    } else {
+      favorites.add(current);
+    }
+    notifyListeners();
+  }
 }
 
 class MyHomePage extends StatelessWidget {
@@ -48,11 +58,22 @@ class MyHomePage extends StatelessWidget {
           children: [
             BigCard(pair: pair),
             SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                appState.getNext();
-              },
-              child: Text('Próximo'),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    appState.getNext();
+                  },
+                  child: Text('Favoritar'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    appState.getNext();
+                  },
+                  child: Text('Próximo'),
+                ),
+              ],
             ),
           ],
         ),
@@ -72,13 +93,15 @@ class BigCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final style = theme.textTheme.displayMedium!.copyWith(color: theme.colorScheme.onPrimary);
+    final style = theme.textTheme.displayMedium!
+        .copyWith(color: theme.colorScheme.onPrimary);
 
     return Card(
       color: theme.colorScheme.primary,
       child: Padding(
         padding: const EdgeInsets.all(20),
-        child: Text(pair.asLowerCase, style: style, semanticsLabel: "${pair.first} ${pair.second}"),
+        child: Text(pair.asLowerCase,
+            style: style, semanticsLabel: "${pair.first} ${pair.second}"),
       ),
     );
   }
